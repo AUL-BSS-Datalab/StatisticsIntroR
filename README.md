@@ -3,10 +3,10 @@ In this workshop, you will be introduced to the programming language R and the g
 
 The workshop will cover descriptive statistics, including:
 
-How to navigate in RStudio
-How to load an Excel file into R
-How to use basic statistical functions
-How to create visualizations
+- How to navigate in RStudio
+- How to load an Excel file into R
+- How to use basic statistical functions
+- How to create visualizations
 
 # Data
 In the data folder, you will find the raw data we will use in the workshop. Our data comes from Erik Gahner Larsen's book 'Introduction to R' (2022) and contains various information related to parliamentary elections in Denmark. Our data is in an Excel file divided into two sheets. The first sheet contains a table of the number of votes divided by party, and the second sheet contains a table of the number of mandates divided by party. You can see an overview of parties, names, and various abbreviations here: GitHub Repository.
