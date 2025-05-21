@@ -22,7 +22,7 @@ R can be downloaded here: Download R.
 Download the latest version of RStudio to your computer. Again, make sure to select a version that matches your operating system. RStudio is the application where we will write our code. It is RStudio that we open when we want to program.
 RStudio can be downloaded here: Download RStudio.
 
-# Via a Browser:
+## Via a Browser:
 ### Go to Posit Cloud
 If you wish to access R and RStudio from a browser, simply follow this link: Posit Cloud. Here, you can either create a free account or log in if you already have one.
 
