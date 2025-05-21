@@ -26,6 +26,9 @@ RStudio can be downloaded here: Download RStudio.
 Go to Posit Cloud
 If you wish to access R and RStudio from a browser, simply follow this link: Posit Cloud. Here, you can either create a free account or log in if you already have one.
 
+# 
+<br><img src="./StatistikIntro.png" width="400"/>
+
 # Further Work in R
 If you are interested in learning more about R, these books are an excellent place to start. The books come with a series of exercises that can prepare you well for your further work in R.
 
