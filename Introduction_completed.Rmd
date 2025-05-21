@@ -1,0 +1,195 @@
+---
+title: "Introduction to R and basic statistics"
+author: 'Johanne Brandhøj Würtz, AUL BSS '
+date: "2025-09-21"
+output: html_notebook
+---
+
+Welcome to the workshop in R! The purpose of this workshop is to provide an introduction to the programming language R, which is well-suited for statistics. We will cover some generally applicable functions related to descriptive statistics in R. Our data comes from the book 'Introduction to R' by Erik Gahmer Larsen from 2024 (Hans Reitzels Forlag) and contains election results from parliamentary elections in Denmark.
+
+# Layout
+
+The user interface consists of four windows. Each window contributes different types of functions and overviews. The first window (top left) is the primary interface. This is where we write our code. The second window (bottom left) includes our console, where our code is executed and can be seen as the underlying layer – the actual 'computer/calculator.' The third window (top right) shows, among other things, the environment we are working in when we have created a project. An environment here should be understood as an overview of the variables we use in our code (objects). We use a variable, for instance, when we load our data and save it under a meaningful name. A variable thus contains values that are assigned by us. The fourth window (bottom right) displays, among other things, the folder and file system we are in. This way, one can easily see how their files are organized within their project. This is relevant when we need to load our data, as R needs to know exactly where to find the specific files in order to use them.
+
+This script is in R Markdown format, which means it can contain both explanatory text (like what you are reading here) and code in the R programming language. The gray boxes marked with ´´´ are our code chunks. This is where we write and run our code. A code chunk is executed when you click the small green arrow in the upper right corner of the chunk. Code can also be run by pressing Ctrl + Enter when your cursor is outside the relevant line in the gray box.
+
+# Preparation
+
+The first thing we do is install the packages we need. These packages extend the base functionality and make it possible to perform more advanced statistics as well as create informative visualizations.
+
+```{r Install packages}
+#install.packages("readxl")
+#install.packages("tidyverse")
+#install.packages("ggplot2")
+```
+
+The packages are now installed in your local R, and we will now load the packages to activate them in this session.
+
+```{r Load packages}
+library(readxl)
+library(tidyverse)
+library(ggplot2) 
+```
+
+# Data
+
+We are now going to load and save our data regarding election results into a variable. We will name our variable something descriptive and recognizable that reflects its content.
+
+As mentioned, our data comes from Erik Gahner Larsen's book 'Introduction to R' (2022) and contains various information about parliamentary elections in Denmark. The data we will be working with is located in the subfolder 'data.' Here, our data is stored in an Excel file divided into two sheets. The first of the two sheets contains a table of the number of votes by party, and the second sheet contains a table of the number of seats by party.
+
+The way to load your data depends on how the data is saved. Since we are working with data from Excel, we will need to load the data in a specific way using a specific function (read_excel). However, if we had a CSV file or another format, we would need to use a different function to load our data into R (e.g., read_csv). Different data formats require different packages, but it is possible to load most data formats into R. It is perfectly fine not to remember these functions, and it's easy to look them up if you have any doubts.
+
+```{r Load data}
+fv_votes <- read_excel("data/folketingsvalg.xlsx", sheet = "votes")
+fv_seats <- read_excel("data/folketingsvalg.xlsx", sheet = "seats")
+```
+
+You can now see that the variables are in our environment (the window at the top right). By clicking on the name, we can view our data in a table. We can also gain an overview and insight into our data by using a range of functions in R.
+
+```{r Data overview}
+#Displays the first lines of our dataset
+head(fv_votes)
+
+#Displays the last lines of our dataset
+tail(fv_seats)
+
+```
+
+In the next code chunk, we will examine the history of the number of votes for some of the parties that were elected to the Folketing in 2019. We will use the following functions:
+
+-   select(): In this case, it allows us to select specific columns from our primary dataset and transfer them to a new, smaller dataset.
+
+-   pivot_longer(): One of the frequently used functions from the tidyr package. Here, we compress the dataset by going from nine columns to three. We do this to create a more meaningful dataset, where the party and the number of votes each have their own column.
+
+-   max(): Finds the maximum value.
+
+-   min(): Finds the minimum value.
+
+-   summary(): Provides an overview of descriptive information.
+
+-   filter(): Allows us to select data from, for example, a specific year.
+
+-   ggplot(): Used (in this case) to create an 'advanced' bar chart.
+
+```{r Folketinget 2019}
+#Select Central Parties - Here are the parties that were elected to the Folketing in 2019
+fv_udv <- select(fv_votes, "year", "votes_s", "votes_k", "votes_df", "votes_v", "votes_el", "votes_la", "votes_alt", "votes_rv", "votes_nb", "votes_sf")
+
+#Compress the table for the Folketing in 2019 so that the parties are gathered in one column and the number of votes is gathered in another column.
+fv_udv <- pivot_longer(fv_udv, cols = 2:11, names_to = "party", values_to = "votes")
+
+#Finds the maximum value in the column
+max(fv_udv$stemmer, na.rm = TRUE)
+
+#Finds the minimum value in the column
+min(fv_udv$stemmer, na.rm = TRUE)
+
+#Displays an overview of min, max, median, mean, etc.
+summary(fv_udv$stemmer)
+
+#Filter for the year when Venstre had the lowest percentage of votes
+fv_udv %>% 
+  filter(votes == min(votes, na.rm = TRUE))
+
+#Filter for the year when Venstre had the highest percentage of votes
+fv_udv %>% 
+  filter(votes == max(votes, na.rm = TRUE))
+
+```
+
+# Visualization
+
+We will now use our data to create a series of visualizations. For this, we will use the ggplot package.
+
+In the visualization below, we define the following parameters:
+
+-   We filter to only include the year 2019.
+
+-   We create a visualization using ggplot.
+
+-   The x-axis consists of parties ranked so that the highest number of votes is at the top and the lowest number of votes is at the bottom.
+
+-   The y-axis consists of the number of votes.
+
+-   The fill color should correspond to the number of votes.
+
+-   The visualization should be a bar chart.
+
+-   We swap the placement of the x and y axes to make it easier to read the visualization.
+
+-   We provide labels/names for the x and y axes.
+
+-   We use a color scale from ggplot to make it easier to read the visualization.
+
+```{r Folketinget 2019 - visualization}
+#Visualization of the number of votes per party in the parliamentary election of 2019 for the parties that were elected.
+
+fv_udv %>% 
+  filter(year == 2019) %>%
+  ggplot(aes(x = reorder(party, votes), y = votes, fill = votes))+
+  geom_col()+
+  coord_flip()+
+  labs(x = "Party", y = "Number of votes")+
+  scale_fill_viridis_c()
+
+
+```
+
+For the next visualization, we will reuse most of the functions from earlier. The only new addition is the function fator(). This function allows us to categorize into 'levels' or 'categories'. This is important for us, as it provides a more explanatory visualization of the years in our case.
+
+```{r Social Democrats (Socialdemokratiet) votes - visualizing}
+#Select the columns/variables that we want in the table. Here, we are interested in the Social Democrats and the year.
+
+fv_votes_s <- fv_votes %>% 
+  select(votes_s, year)
+
+#Visualization of the number of votes for the Social Democrats from 1953 to 2019.
+fv_votes_s %>% 
+  ggplot(aes(x = factor(year), y = votes_s, fill = votes_s))+
+  geom_col()+
+  coord_flip()+
+  labs(x = "Year", y = "Votes")+
+  scale_fill_viridis_c()
+
+```
+
+# Combination of two datasets
+
+The last thing we will cover is how to merge two datasets into a single dataset. This allows us to perform analyses and visualizations that are not possible if our data resides in separate datasets.
+
+We want to combine the two datasets we loaded at the beginning of the script: namely fv_votes and fv_seats. When merging two datasets, R needs to know how to combine them, i.e., which dataset should be added to an existing one, and which variable R should use as a reference point. To obtain a meaningful dataset from the merge, it is important to consider how the two datasets are structured. Do they have any common variables that would make sense to merge, and are they formatted in a reasonably similar way? This may seem a bit confusing, but hopefully, it will make sense with the example below.
+
+If we start by looking at the two datasets we want to merge, we can see that they do not have the same structure. fv_votes has 24 observations, i.e., rows, and 24 variables, i.e., columns. In contrast, fv_seats has 24 observations but only 23 variables. This is practically due to the fact that votes_total is found in fv_votes. This variable is essential, as the number of votes varies from year to year. However, there is no seats_total in fv_seats, as the number of seats is fixed and independent of the year (175).
+
+So, we have two datasets that, at first glance, are quite similar, but with slight differences in size. It is to our advantage that the two datasets share a variable, namely year. This allows us to merge the two datasets based on this unique variable, ensuring that the data is transferred to the correct rows under the appropriate columns. The variable is unique since each year only appears once in each of the two datasets. We can therefore think of it as an ID or a CPR number that is unique to each row. Thus, we use the year variable as a sort of key when merging the two datasets.
+
+```{r Venstre vote and seat share in percentage}
+
+#Merge the two datasets based on the common variable 'year'.
+fv <- left_join(fv_votes, fv_seats, by = "year")
+
+# Create a new dataset where relevant variables are included - note that we are interested in the column votes_total, as the share is calculated based on the total number.
+
+fv_venstre <- fv %>%
+  select(year, votes_v, seats_v, votes_total) %>% 
+  mutate(votes_pct = votes_v / votes_total*100) %>% 
+  mutate(seats_pct = seats_v / 175*100)
+
+#Change the number of decimals for the percentage - we will change it to 1 decimal
+fv_venstre$votes_pct <- round(fv_venstre$votes_pct, 1)
+
+fv_venstre$seats_pct <- round(fv_venstre$seats_pct, 1)
+
+#View an overview of the distribution of vote and seat shares in percentage for Venstre
+summary(fv_venstre)
+
+#Filter for the year when Venstre had the lowest percentage of votes
+fv_venstre %>% 
+  filter(votes_pct == min(votes_pct))
+
+
+#Filter for the year when the Left (Venstre) had the highest percentage of votes.
+fv_venstre %>% 
+  filter(votes_pct == max(votes_pct))
+
+```
