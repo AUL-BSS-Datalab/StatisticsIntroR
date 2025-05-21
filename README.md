@@ -34,8 +34,8 @@ If you are interested in learning more about R, these books are an excellent pla
 
 Introduktion til R from 2022 by Erik Gahner Larsen
 
-An Introduction to R from 2024 af Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto & David Lusseau: https://intro2r.com/rsprojs.html
+An Introduction to R from 2024 by Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto & David Lusseau: https://intro2r.com/rsprojs.html
 
-R for Data Science (2e) from 2023 af Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund: https://r4ds.hadley.nz/
+R for Data Science (2e) from 2023 by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund: https://r4ds.hadley.nz/
 
 Text Mining with R: A Tidy Approach from 2024 by Julia Silge and David Robinson: https://www.tidytextmining.com/
