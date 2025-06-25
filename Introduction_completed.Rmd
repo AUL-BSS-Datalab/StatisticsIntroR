@@ -79,13 +79,13 @@ fv_udv <- select(fv_votes, "year", "votes_s", "votes_k", "votes_df", "votes_v", 
 fv_udv <- pivot_longer(fv_udv, cols = 2:11, names_to = "party", values_to = "votes")
 
 #Finds the maximum value in the column
-max(fv_udv$stemmer, na.rm = TRUE)
+max(fv_udv$votes, na.rm = TRUE)
 
 #Finds the minimum value in the column
-min(fv_udv$stemmer, na.rm = TRUE)
+min(fv_udv$votes, na.rm = TRUE)
 
 #Displays an overview of min, max, median, mean, etc.
-summary(fv_udv$stemmer)
+summary(fv_udv$votes)
 
 #Filter for the year when Venstre had the lowest percentage of votes
 fv_udv %>% 
