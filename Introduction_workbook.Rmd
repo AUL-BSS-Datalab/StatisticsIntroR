@@ -81,10 +81,10 @@ In the next code chunk, we will examine the history of the number of votes for s
 #Displays an overview of min, max, median, mean, etc.
 
 
-#Filter for the year when Venstre had the lowest percentage of votes
+#Filter for the year with the lowest percentage of votes
 
 
-#Filter for the year when Venstre had the highest percentage of votes
+#Filter for the year with the highest percentage of votes
 
 
 ```
@@ -160,3 +160,4 @@ So, we have two datasets that, at first glance, are quite similar, but with slig
 
 
 ```
+
