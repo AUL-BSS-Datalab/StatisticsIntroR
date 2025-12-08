@@ -9,9 +9,9 @@ Welcome to the workshop in R! The purpose of this workshop is to provide an intr
 
 # Layout
 
-The user interface consists of four windows. Each window contributes different types of functions and overviews. The first window (top left) is the primary interface. This is where we write our code. The second window (bottom left) includes our console, where our code is executed and can be seen as the underlying layer – the actual 'computer/calculator.' The third window (top right) shows, among other things, the environment we are working in when we have created a project. An environment here should be understood as an overview of the variables we use in our code (objects). We use a variable, for instance, when we load our data and save it under a meaningful name. A variable thus contains values that are assigned by us. The fourth window (bottom right) displays, among other things, the folder and file system we are in. This way, one can easily see how their files are organized within their project. This is relevant when we need to load our data, as R needs to know exactly where to find the specific files in order to use them.
+The user interface consists of four windows. Each window contributes different types of functions and overviews. The first window (top left) is the primary interface. This is where we write our code. The second window (bottom left) includes our console, where our code is executed and can be seen as the underlying layer – the actual 'computer/calculator.' The third window (top right) shows, among other things, the environment we are working in when we have created a project. An environment here should be understood as an overview of the variables we use in our code (objects). We use a variable, for instance, when we load our data and save it under a meaningful name. A variable thus contains values that are assigned by us. The fourth window (bottom right) displays, among other things, the folder and file system we are in. This way, one can easily see how their are organized within their project. This is relevant when we need to load our data, as R needs to know exactly where to find the specific files in order to use them.
 
-This script is in R Markdown format, which means it can contain both explanatory text (like what you are reading here) and code in the R programming language. The gray boxes marked with ´´´ are our code chunks. This is where we write and run our code. A code chunk is executed when you click the small green arrow in the upper right corner of the chunk. Code can also be run by pressing Ctrl + Enter when your cursor is outside the relevant line in the gray box.
+This script is in R Markdown format, which means it can contain both explanatory text (like what you are reading here) and code in the R programming language. The gray boxes marked with ´´´ are our code chunks. This is where we write and run our code. A code chunk is executed when you click the small green arrow in the upper right corner of the chunk. Code can also be run by pressing Ctrl + Enter when your cursor is on the relevant line in the gray box.
 
 # Preparation
 
@@ -160,4 +160,5 @@ So, we have two datasets that, at first glance, are quite similar, but with slig
 
 
 ```
+
 
