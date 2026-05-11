@@ -1,0 +1,160 @@
+---
+title: "Intro to R"
+format: html
+editor: visual
+---
+
+Welcome to the workshop in R! The purpose of this workshop is to provide an introduction to the programming language R, which is well-suited for statistics. We will cover some generally applicable functions related to descriptive statistics in R. Our data comes from the book 'Introduction to R' by Erik Gahmer Larsen from 2024 (Hans Reitzels Forlag) and contains election results from parliamentary elections in Denmark.
+
+# Layout
+
+The user interface consists of four windows. Each window contributes different types of functions and overviews. The first window (top left) is the primary interface. This is where we write our code. The second window (bottom left) includes our console, where our code is executed and can be seen as the underlying layer – the actual 'computer/calculator.' The third window (top right) shows, among other things, the environment we are working in when we have created a project. An environment here should be understood as an overview of the variables we use in our code (objects). We use a variable, for instance, when we load our data and save it under a meaningful name. A variable thus contains values that are assigned by us. The fourth window (bottom right) displays, among other things, the folder and file system we are in. This way, one can easily see how files are organized within their project. This is relevant when we need to load our data, as R needs to know exactly where to find the specific files in order to use them.
+
+This script is in R Markdown format, which means it can contain both explanatory text (like what you are reading here) and code in the R programming language. The gray boxes marked with ´´´ are our code chunks. This is where we write and run our code. A code chunk is executed when you click the small green arrow in the upper right corner of the chunk. Code can also be run by pressing Ctrl + Enter when your cursor is on the relevant line in the gray box.
+
+## R basics
+
+- R is basically just a calculator
+- you can use R to do basic math calculations (and use more advanced functions)
+- A function is a collection of tasks we want R to do in order to get a specific result
+  - Instead of clicking on different buttons we must write out these commandos
+
+  - We have access to simple functions in base R, but we will often install packages to get access to more advanced functions
+- We write our code in scripts so we can save, access, edit and run them later
+
+## The structure in R
+
+- When writing code in R, we follow a fixed syntax or structure
+
+- We first specify the name of the function and then we specify the arguments
+
+- Example:
+
+  - function(argument1 = value1, argument2 = value2)
+
+```{r}
+
+2 + 3
+
+sum(2, 3)
+
+```
+
+## Creating objects
+
+- You can create new objects with the assignment operator
+
+- Example:
+
+  - object_name \<- value
+
+```{r}
+
+x <- 5
+
+y_value <- 2
+
+
+```
+
+- Object names must start with a letter and can only contain letters, numbers, \_ and .
+
+```{r}
+
+some_use_snake_case <- 1
+otherPeopleUseCamelCase <- 1
+some.people.use.periods <- 1
+And_aFew.People_RENOUNCEconvention <- 1
+
+```
+
+## Comments
+
+You can write comments. R will ignore any text after \# for that line
+
+```{r}
+
+#This is a comment, the next line is not
+2 + 2 #We can also write comments after a line of code
+
+This is not a comment and will cause an error
+```
+
+## Data types
+
+- There are different types of data in R (e.g. logical, numeric, integer, character, factor)
+
+  - These can be stored in a vector, list, matrix or dataframe
+
+```{r}
+
+#A numeric value contains one or more numbers. It is the most simple data type in R
+numeric_value <- 2
+
+#An integer also contains numbers, but only whole numbers like 1 and not numbers like 1.5. Decimal numbers is also called floats. These will be stored as numeric values and not as integers
+
+integer_value <- 1:5
+
+#Text is stored as characters. This is also called a string. When defining a text it must be inside quotes " " or ' '
+string_value <- "This is a string aka a character aka a text"
+
+#A logical value can be either TRUE or FALSE. It reminds of the binary alphabet where computers can read 0 and 1
+logical_value <- TRUE
+
+#Factors represent categorical data and are also called levels
+factor_value <- factor("example")
+factor_value_levels <- factor(c("example1", "example2", "example3"))
+
+
+```
+
+## Packages
+
+- R is an open source programming language
+
+- We must install a package to get access to the functions inside it
+
+- We only have to install the package once, but we must load the package into the script every time we want to use it
+
+- Example on how to install a package:
+
+  - install.packages("package")
+
+- Example on how to load a package:
+
+  - library(package)
+
+```{r}
+#We only have to install a package once
+install.packages("dplyr")
+
+#We have to load a package into the script every time we want to use it
+library(dplyr)
+
+```
+
+## Getting help
+
+- RStudio have a build-in help function in the interface. We can find the 'Help' tab in the window in the button right corner (were we also can find our files etc.)
+
+- We can also activate the help via the script. Simply write ? followed by the name of the function you want to learn about
+
+```{r}
+
+?sum
+
+?mean
+
+```
+
+### Other resources
+
+- You can often find help by simply searching for the function or the error on Google, Bing etc.
+
+- Stack Overflow is a very useful resource for help on programming (it is like Reddit but more programming oriented (and sober))
+
+- AI's (more specific LLM's) can often be helpful tools when programming
+
+  - Be aware that you might have to be quite specific about your question/problem when asking a LLM
+
+  - Be aware of Copyright and GDPR when using an AI. Some data are under Copyright law and some data might contain sensitive data
